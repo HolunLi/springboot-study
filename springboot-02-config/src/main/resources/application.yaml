@@ -1,0 +1,49 @@
+#yaml区别于properties
+#.properties配置文件中的数据以key=value的形式存在，要求key和value都必须是字符串
+#yaml配置文件中的数据以key: value的形式存在，value可以是一个对象
+
+#yaml语法
+#key: value；kv之间有空格
+#大小写敏感
+#使用缩进表示层级关系
+#缩进的空格数不重要，只要相同层级的元素左对齐即可
+# '#'表示注释
+#字符串无需加引号，如果要加，''与""表示字符串内容 会被 转义/不转义
+
+#普通的key-value
+name: holun    #注意： : 和 value之间一定要有一定空格
+
+#对象
+student:
+  name: holun
+  age: 21
+
+#对象的行内写法
+student1: {name: holun, age: 21}
+
+#数组
+pets:
+  - cat
+  - dog
+  - finsh
+
+#数组的行内写法
+pets1: [cat,dog,finsh]
+
+#将配置文件中前缀为“person1”下的属性与Person类中的属性进行一一绑定
+person1:
+  name: holun${random.uuid} #${random.uuid} 表示随机生成一个uuid
+  age: 21  #这里还可以使用占位符：${random.int}，表示随机生成一个int类型的数据
+  happy: false
+  birth: 2021/7/30
+  map: {k1: v1,k2: v2}
+  list:
+    - girls
+    - music
+    - code
+  dog: {name: 张四, age: 11}
+
+
+
+
+

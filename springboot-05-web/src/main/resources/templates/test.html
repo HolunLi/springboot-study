@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--text会对变量中的内容进行转义-->
+<span th:text="${name1}"></span>
+<!--utext不会对变量中的内容进行转义-->
+<span th:utext="${name2}"></span>
+
+<!--遍历-->
+<span th:text="${stu}" th:each="stu:${students}"></span>
+
+<span th:each="stu : ${students}">
+  <td th:text="${stu}"></td>
+</span>
+
+</body>
+
+</html>

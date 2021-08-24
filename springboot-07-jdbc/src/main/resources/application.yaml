@@ -1,0 +1,72 @@
+#配置数据源（SpringBoot在没指定特定的数据源之前，默认使用StringBoot内置的HikariDataSource）
+spring:
+  datasource:
+    username: root
+    password: haolun
+    url: jdbc:mysql://localhost:3306/mydatabase2?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      #以下都是druid数据源专有的配置
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      useGlobalDataSourceStat: true
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+      #配置监控统计拦截的filters，stat：监控sql、wall：防御sql注入、 slf4j：日志记录、
+      #如果允许报错，java.lang.ClassNotFoundException: org.apache.Log4j.Properity
+      #则导入log4j 依赖就行
+      filters: stat,wall,slf4j
+      #监控SpringBean（监控Spring容器中的组件）
+      aop-patterns: com.holun.*
+
+      #监控页面（druid数据源内置了状态监控页面）
+      stat-view-servlet:
+        #开启监控页面
+        enabled: true
+        #监控页面的登录账号
+        login-username: holun
+        #监控页面的登录密码
+        login-password: 123
+        #访问监控页面的url-pattern（默认就为：/druid/*）
+        #url-pattern: /druid/*
+        #IP白名单（没有配置或者为空，则允许所有访问）
+        allow: 127.0.0.1
+        #IP黑名单（存在共同时，deny优先于allow）
+        #deny: 127.0.0.1
+        #禁用监控页面的重置按钮
+        reset-enable: false
+
+      #Web应用监控
+      web-stat-filter:
+        #开启Web应用监控
+        enabled: true
+        url-pattern: /*
+        #排除对静态资源的请求，以及访问监控页面的请求
+        exclusions: '*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*'
+
+      filter:
+        #对上面filters里面stat的详细配置
+        stat:
+          slow-sql-millis: 1000
+          log-slow-sql: true
+          enabled: true
+        #对上面filters里面wall的详细配置
+        wall:
+          enabled: true
+          config:
+            drop-table-allow: false
+
+hello:
+  prefix: 太帅了
+  suffix: 恭喜你自定义starter成功!

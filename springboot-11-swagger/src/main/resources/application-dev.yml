@@ -1,0 +1,6 @@
+swagger:
+  enable: true
+  title: Swagger3接口文档
+  version: 1.0
+  description: created by Holun
+  host: http://localhost:${server.port}

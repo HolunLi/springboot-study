@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    username: root
+    password: haolun
+    url: jdbc:mysql://localhost:3306/mydatabase2?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      #druid数据源专有配置
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      useGlobalDataSourceStat: true
+      connectionproperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+mybatis:
+  #为entity包下的实体类取别名
+  type-aliases-package: com.holun.entity
+  #指明sql映射文件的位置
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  #指明mybatis配置文件的位置
+  config-location: classpath:mybatis/mybatis-config.xml

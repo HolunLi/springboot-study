@@ -1,0 +1,28 @@
+
+#静态资源默认可以存放在以下四个路径
+#classpath:/META-INF/resources/
+#classpath:/resources/
+#classpath:/static/
+#classpath:/public/
+#默认访问静态资源url-pattern是： /**
+
+#假如这四个路径下存相同的静态资源：16.jpg
+#当访问16.jpg时，会先从/META-INF/resources/路径下找，找不到从/resources/下找，依次类推
+#优先级：/public/ < /static/ < /resources/  < /META-INF/resources/
+
+spring:
+  #更改访问静态资源的url-pattern
+  mvc:
+    static-path-pattern: /res/**
+  web:
+    resources:
+      #关闭对静态资源的访问
+      #add-mappings: false
+      #更改静态资源存放的位置
+      #static-locations: [classpath:/res/]  #将静态资源存放的位置改为：类路径下的res目录
+
+
+
+
+
+
