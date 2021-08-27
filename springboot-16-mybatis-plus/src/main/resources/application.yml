@@ -24,3 +24,12 @@ spring:
 
 mybatis-plus:
   type-aliases-package: com.holun.entity
+  configuration:
+    #配置mybatis日志工厂的实现
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+
+logging:
+  #设置日志输出的级别
+  level:
+    com.holun.mapper: debug
+  #生产环境下，打印日志会耗费资源，将日志的输出级别改为info即可
