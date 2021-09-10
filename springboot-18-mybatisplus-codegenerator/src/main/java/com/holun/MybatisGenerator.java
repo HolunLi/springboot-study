@@ -26,7 +26,7 @@ public class MybatisGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/mydatabase?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8");
+        dsc.setUrl("jdbc:mysql://localhost:3306/tmall?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("haolun");
@@ -41,9 +41,9 @@ public class MybatisGenerator {
 
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
-        strategy.setInclude("user"); // 设置要映射的表名
+        strategy.setInclude("category","product","property","productimage","propertyvalue","order_","orderitem","review","user"); // 设置要映射的表名
         strategy.setNaming(NamingStrategy.underline_to_camel); //开启表名，驼峰命名转换
-        strategy.setColumnNaming(NamingStrategy.underline_to_camel); //开启列名，驼峰命名转换
+       // strategy.setColumnNaming(NamingStrategy.underline_to_camel); //开启列名，驼峰命名转换
         mpg.setStrategy(strategy);
 
         // 配置模板
